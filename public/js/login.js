@@ -1,4 +1,4 @@
-define(['jquery'],function($){
+define(['jquery','cookie'],function($){
 	//实现登录功能
 	$('#login').click(function(){
 		$.ajax({
@@ -8,6 +8,8 @@ define(['jquery'],function($){
 	    	dataType:'json',
 	    	success:function(data){
 	        	if(data.code==200){
+	        		//先保存cookie
+	        		$.cookie('loginInfo',JSON.stringify(data.result),{path:'/'});
 	            	//登陆到主页面
 	            	location.href='/main/index'
 	        	}else{
